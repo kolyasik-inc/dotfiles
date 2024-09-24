@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
@@ -69,5 +76,23 @@ promptinit
 # example2: mv ~/path/to/source^(exceptionOne|exceptionTwo) ~/path/to/target/folder
 setopt extended_glob
 
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory
+
 # source the ~/.profile user config
 . $HOME/.profile
+
+# plugins
+source /home/kolyasik/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /home/kolyasik/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/kolyasik/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+fpath=(/home/kolyasik/.zsh/zsh-completions/src $fpath)
+
+source /home/kolyasik/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
