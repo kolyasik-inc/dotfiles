@@ -44,6 +44,21 @@ plugins = {
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
+  },
+  {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig"
+  },
+  {
+    "nvim-telescope/telescope-ui-select.nvim"
+  },
+  {
+    "nvimtools/none-ls.nvim"
   }
 }
 
@@ -51,11 +66,8 @@ opt = {}
 
 require("lazy").setup(plugins, opt)
 
+-- Config setup stuff
 local builtin = require("telescope.builtin")
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-
-vim.keymap.set('n', '<leader>n', ':Neotree filesystem reveal left<CR>', {})
 
 local config = require ("nvim-treesitter.configs")
 config.setup({
@@ -66,3 +78,48 @@ config.setup({
 
 require("catppuccin").setup()
 vim.cmd.colorscheme "catppuccin"
+
+require('lualine').setup({
+  options = {
+    theme = 'dracula'
+  }
+})
+
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = { "lua_ls", "ts_ls", "stylua" }
+})
+
+local lspconfig = require("lspconfig")
+lspconfig.lua_ls.setup({})
+lspconfig.ts_ls.setup({})
+
+require("telescope").setup {
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+      }
+    }
+  }
+}
+require("telescope").load_extension("ui-select")
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.stylua,
+    },
+})
+
+-- Keymaps setup
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+
+vim.keymap.set('n', '<leader>n', ':Neotree filesystem reveal left<CR>', {})
+
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
+vim.keymap.set({ 'n' }, '<leader>ca', vim.lsp.buf.code_action, {})
+
+vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
