@@ -123,3 +123,22 @@ vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
 vim.keymap.set({ 'n' }, '<leader>ca', vim.lsp.buf.code_action, {})
 
 vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+
+-- Disable arrow keys in Normal mode
+vim.keymap.set('n', '<Up>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Down>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Left>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Right>', '<Nop>', { noremap = true, silent = true })
+
+-- Disable arrow keys in Insert mode
+vim.keymap.set('i', '<Up>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('i', '<Down>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('i', '<Left>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('i', '<Right>', '<Nop>', { noremap = true, silent = true })
+
+-- Disable arrow keys in Visual mode
+vim.keymap.set('v', '<Up>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('v', '<Down>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('v', '<Left>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('v', '<Right>', '<Nop>', { noremap = true, silent = true })
+
