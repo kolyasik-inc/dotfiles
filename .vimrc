@@ -154,6 +154,16 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/
 " identLine
 let g:indentLine_char='|'
 
+"default"
+syntax on
+set number
+set hlsearch
+set tabstop=4
+set autoindent
+set cb=unnamed
+set colorcolumn=""
+set tw=0
+
 " Disable arrow keys in Normal mode
 noremap <Up> <Nop>
 noremap <Down> <Nop>
