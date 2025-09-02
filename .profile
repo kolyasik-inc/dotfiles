@@ -11,7 +11,7 @@ export PATH=${PATH}:${HOME}/.local/share/bin
 export PATH=${PATH}:/var/lib/flatpak/exports/bin
 
 # pnpm
-export PNPM_HOME="/home/oryvny/.local/share/pnpm"
+export PNPM_HOME="/home/$USER/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
