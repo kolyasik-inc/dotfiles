@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# ----------------------------------------------------
+# Variáveis que o Flatpak precisa para abrir file chooser
+# ----------------------------------------------------
+export GTK_USE_PORTAL=1
+export QT_QPA_PLATFORMTHEME=xdg-desktop-portal
+
+# ----------------------------------------------------
+# Garantir que o XDG_DATA_DIRS exista
+# (corrige apps que não localizam temas/ícones)
+# ----------------------------------------------------
+export XDG_DATA_DIRS="/usr/local/share:/usr/share:${XDG_DATA_DIRS}"
