@@ -20,6 +20,7 @@ Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'Yggdroot/indentLine'
+Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()            " required
 " Vundle -----------------------------------------------------------------------
